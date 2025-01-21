@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager with Sticky Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div id="logoContainer" style="position: fixed; top: 20px; right: 230px; z-index: 1000;">
+    <img src="princeton-logo.png" alt="Logo" style="height: 65px; width: auto;">
+</div>
+
+<body>
+    <div id="stickyNotesSection">
+        <h2>NotePad</h2>
+        <button id="addNoteButton">Add Note</button>
+        <div id="notesContainer"></div>
+    </div>
+
+    
+    
+    
+
+    <div id="dateTime">
+        <div id="date"></div>
+        <div id="clock"></div>
+        <div id="temperature">Loading temperature...</div>
+        <div class="toggle-container">
+            <label class="toggle-label">
+                <input type="checkbox" id="themeToggle"> Dark Mode
+            </label>
+        </div>
+
+       <div style="margin-bottom: -20px;">
+            <h4>WebSites</h4>
+        </div>
+
+
+        <div class="button-container">
+            <button onclick="openUrl('https://atrium.artmuseum.princeton.edu/pages/home.php?login=true')">Atrium</button>
+            <button onclick="openUrl('https://artmuseum.princeton.edu/')">PUAM Site</button>
+            <button onclick="openUrl('https://pcsprod.princeton.edu/')">Princeton HR</button>
+            <button onclick="openUrl('https://airtable.com/')">Airtable</button>
+            <button onclick="openUrl('https://airtable.com/')">Office 365</button>
+
+        </div>
+
+        <div style="margin-bottom: -20px;">
+            <h4>PUAM Locations</h4>
+        </div>
+        <div class="button-container">
+            <button onclick="openUrl('https://campusmap.princeton.edu/poi/543/600-alexander-road')">600 Alexander</button>
+            <button onclick="openUrl('https://campusmap.princeton.edu/poi/101/robertson-hall?poiIdViaMap=118')">Green Hall</button>
+            <button onclick="openUrl('https://campusmap.princeton.edu/poi/1164/princeton-university-press')">41 William St.</button>
+            <button onclick="openUrl('https://campusmap.princeton.edu/poi/2278/forrestal-sb')">Forrestal Campus</button>
+            <button onclick="openUrl('https://campusmap.princeton.edu/poi/237/bainbridge-house')">Bainbridge</button>
+        </div>
+        
+        <div style="margin-bottom: -20px;">
+            <h4>Important Know-Hows</h4>
+        </div>
+
+        <div class="button-container">
+            <button onclick="openUrl('https://atrium.artmuseum.princeton.edu/pages/home.php?login=true')">Prox/ID Scans</button>
+            <button onclick="openUrl('https://princetonu-my.sharepoint.com/:b:/g/personal/dn1373_princeton_edu/ET7gd6usz_hFqq-NofffZPAB8rW5AlKv6ELL723DZxmbzA?e=blx5lf')">Out of Office </button>
+            <button onclick="openUrl('https://princeton.service-now.com/service?id=kb_article&sys_id=KB0013868')">How to Print</button>
+            <button onclick="openUrl('https://princeton.emscloudservice.com/web/')">Reserving Rooms</button>
+            <button onclick="openUrl('https://transportation.princeton.edu/lyft-business-portal-request?check_logged_in=1')">Lyft Program</button>
+
+        </div>
+        
+        <div style="margin-bottom: -20px;">
+            <h4>Extra Information</h4>
+        </div>
+
+        <div id="infoSection" style="margin-top: 10px;">
+            <button id="infoButtonPUAM" class="standard-button">Princeton Perks</button>
+        
+            <!-- PUAM-IT Info -->
+            <div id="infoBoxPUAM" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f9f9f9; color: #000; z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto; text-align: left;">
+                <button id="closeInfoButtonPUAM" style="position: absolute; top: 10px; right: 10px; padding: 10px 15px; background-color: #4b4b4b; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+                <h1>Information</h1>
+                
+                <!-- Printers Section -->
+                <section id="printersSection" style="margin-top: 20px;">
+                    <h2>Printers</h2>
+                    <p>Windows key + R </p>
+                    <p>\\ss226w.princeton.edu</p>
+                </section>
+        
+                <!-- TMS Install Section -->
+                <section id="tmsSection" style="margin-top: 20px;">
+                    <h2>TMS Install</h2>
+                    <p>PC. Remote Desktop version. Control Panel -> Remote App. https://amu224w.princeton.edu/RDWeb/feed/webfeed.aspx. Credientals: PRINCETON/NetID</p>
+                    <p> Connecting Local App. OBDC 32 bit run as admin. SYstem DSN Tab -> ADD. SQL Server Native Client. Name: museum. server: amu220w.princeton.edu. Change deafutl database to 'TMS'</p>
+                    <p>Mac- Work Resources. Add Workspace</p>
+                </section>
+        
+                <!-- Shared Drivers Section -->
+                <section id="sharedDriversSection" style="margin-top: 20px;">
+                    <h2>Shared Drives</h2>
+                    <p>Common Drive - \\files.princeton.edu\Dept\AMUSEUM\COMMON</p>
+                    <p>TMS Drive - \\amu224w.princeton.edu\TMS</p>
+                </section>
+            </div>
+        
+            <!-- Onboarding Docs Info -->
+            <div id="infoBoxOnboarding" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f9f9f9; color: #000; z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto; text-align: left;">
+                <button id="closeInfoButtonOnboarding" style="position: absolute; top: 10px; right: 10px; padding: 10px 15px; background-color: #4b4b4b; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+                <h1>Onboarding Documents</h1>
+                <section style="margin-top: 20px;">
+                    <h2>Macs</h2>
+                    <p>Welcome to the Princeton University Art Museum IT team. Below are the essential documents and steps for onboarding:</p>
+                    <h2>PCs</h2>
+                    <p>Welcome to the Princeton University Art Museum IT team. Below are the essential documents and steps for onboarding:</p>
+                    <h2>Other</h2>
+                    <p>Welcome to the Princeton University Art Museum IT team. Below are the essential documents and steps for onboarding:</p>
+
+                </section>
+                
+            </div>
+        </div>
+        
+    
+        <div id="timerModal" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px; background-color: #fff; border: 1px solid #ccc; z-index: 1000; width: 300px; text-align: center;">
+            <p style="margin: 0 0 10px;">Set Timer Duration (minutes):</p>
+            <input type="number" id="timerInput" style="width: 90%; padding: 5px; margin-bottom: 10px; border: 1px solid #ccc;">
+            <div>
+                <button id="startTimerButton" style="padding: 5px 10px; margin-right: 5px;">Start</button>
+                <button id="cancelTimerButton" style="padding: 5px 10px;">Cancel</button>
+            </div>
+
+            <div id="dateTime" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                <div>
+                    <div id="date"></div>
+                    <div id="clock"></div>
+                </div>
+                <button id="stopTimerButton" style="display: none; padding: 5px 10px; background-color: #FF0000; color: rgb(53, 52, 52); border: none; border-radius: 5px; cursor: pointer;">Stop Timer</button>
+            </div>
+
+            
+            
+        </div>
+        
+        
+    </div>
+
+    <div id="newsTicker">
+        <span id="news">Loading latest international news...</span>
+    </div>
+
+  
+   
+    
+    <div id="addButtonForm">
+        <input type="text" id="buttonText" placeholder="Link Name" />
+        <input type="url" id="buttonUrl" placeholder="Link URL" />
+        <button id="addButton" style="margin-top: 5px;">Add Link</button>
+        <button id="removeLinkButton">Remove Link</button>
+    </div>
+    
+
+            <!-- Button to trigger link removal -->
+      
+            
+
+<!-- Modal for selecting links to remove -->
+<div id="removeModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: white; border: 1px solid #ccc; z-index: 1000; border-radius: 8px;">
+    <h3>Select a Link to Remove</h3>
+    <div id="linkList">
+        <!-- Dynamically populated list of links -->
+    </div>
+    <button id="confirmRemoveButton" style="margin-top: 10px;">Confirm Remove</button>
+    <button id="cancelRemoveButton" style="margin-top: 10px;">Cancel</button>
+</div>
+
+<!-- Toggle Button -->
+<button id="toggleFormButton" style="position: fixed; bottom: 40px; left: 20px;">Settings</button>
+
+<!-- Hidden Add/Remove Button Form -->
+<div id="addButtonForm" style="display: none; position: relative; background-color: white; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <input type="text" id="buttonText" placeholder="Link Name" />
+    <input type="url" id="buttonUrl" placeholder="Link URL" />
+    <button id="addButton" style="margin-top: 5px;">Add Link</button>
+    <button id="removeLinkButton">Remove Link</button>
+</div>
+
+
+<script def src="taskmanager.js"></script>
+<script def src="livestatus.js"></script>
+<script def src="news.js"></script>  
+<script def src="notepad.js"></script>
+<script def src="darkmode.js"></script>
+<script def src ="password.js"></script>
+<script defer src="quotes.js"></script>
+<script defer src="timer.js"></script>
+<script defer src="linkManager.js"></script>
+<script defer src="articleManager.js"></script>
+
+</body>
+</html>
